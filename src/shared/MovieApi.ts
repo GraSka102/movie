@@ -12,17 +12,17 @@ eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzM2FjM2Y3Mjk0MDI5YWU1ZjBlYjIwNDQ4MjVhNGM0NyIsInN
 
 //const baseUrl = 'https://api.themoviedb.org/3'
 
-export function movieApi<T>(method: Method, path: string, callback: (data: T) => void, data = {}): void {
-  const url = `${MovieUrls.baseUrl}${path}`;
-  axios({
-    method: method,
-    url: url,
-    data
-  })
-    .then((response: AxiosResponse<T>) => callback(response.data))
-    .catch((error) => console.log('Error', error.message))
-    .then(() => console.log("Request succeeded"))
-}
+// export function movieApi<T>(method: Method, path: string, callback: (data: T) => void, data = {}): void {
+//   const url = `${MovieUrls.baseUrl}${path}`;
+//   axios({
+//     method: method,
+//     url: url,
+//     data
+//   })
+//     .then((response: AxiosResponse<T>) => callback(response.data))
+//     .catch((error) => console.log('Error', error.message))
+//     .then(() => console.log("Request succeeded"))
+// }
 
 export function useMoviApi<T>(method: Method, path: string): ([state: (T | undefined), setState: React.Dispatch<React.SetStateAction<T | undefined>>]) {
   const [state, setState] = useState<T>()
@@ -36,3 +36,17 @@ export function useMoviApi<T>(method: Method, path: string): ([state: (T | undef
   }, [method, path])
   return [state, setState];
 }
+
+export function movieApi<T>(method: Method, path: string, callback: (data: T) => void, data = {}): void {
+  
+  const url = `${MovieUrls.baseUrl}${path}`;
+  axios({
+    method: method,
+    url: url,
+    data
+  })
+    .then((response: AxiosResponse<T>) => callback(response.data))
+    .catch((error) => console.log('Error', error.message))
+    .then(() => console.log("Request succeeded"))
+}
+

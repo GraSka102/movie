@@ -1,6 +1,7 @@
 import { Row, Space, Spin } from "antd";
 import React, { ReactElement } from "react";
 import { useMoviApi } from "../shared/MovieApi";
+import { LoadingSpinner } from "./LoadingSpinner";
 import MovieItem from "./MovieItem";
 import { Movie } from "./types/Movie";
 
@@ -10,7 +11,7 @@ interface Props {
 
 export function MovieList({ movies }: Props): ReactElement {
   if (!movies) {
-    return <Spin />;
+    return <LoadingSpinner />;
   }
   return (
     <>
