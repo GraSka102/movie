@@ -1,9 +1,12 @@
-import React from "react";
+import { Alert, Spin } from "antd";
+import React, { ReactElement } from "react";
 
-export function LoadingSpinner() {
+export function LoadingSpinner(): ReactElement {
   return (
-    <div className="ui active inverted dimmer">
-      <div className="ui text loader large">...is Loading</div>
+    <div>
+      <Spin tip="Loading...">
+        <Alert message="Die Daten werden geladen ..." type="info" />
+      </Spin>
     </div>
   );
 }

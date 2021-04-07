@@ -17,7 +17,6 @@ export default function MoviesSearch(): ReactElement {
 
   const { Search } = Input;
 
-  //FormEventHandler<HTMLInputElement>
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.value !== "" ? setPopupOpen(true) : setPopupOpen(false);
     console.log("input " + isPopupOpen);
@@ -40,7 +39,6 @@ export default function MoviesSearch(): ReactElement {
     const found = movies.results.filter((movie) => {
       return matchRegex.test(movie.title);
     });
-    // console.log("Search : " + found.length);
     found.forEach((movie) => console.log(movie.title));
     setFoundMovies(found);
   };

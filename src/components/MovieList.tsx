@@ -1,20 +1,16 @@
-import { Row, Space } from "antd";
+import { Row, Space, Spin } from "antd";
 import React, { ReactElement } from "react";
 import { useMoviApi } from "../shared/MovieApi";
 import MovieItem from "./MovieItem";
 import { Movie } from "./types/Movie";
 
-// const popularPath = `/movie/popular`;
-// const apiKey = `?api_key=33ac3f7294029ae5f0eb2044825a4c47`;
-// const queryParam = `&language=de-De&page=1`;
-//const path = "/discover/movie?sort_by=popularity.desc";
 interface Props {
   movies: Movie[];
 }
 
 export function MovieList({ movies }: Props): ReactElement {
   if (!movies) {
-    return <p>..loading</p>;
+    return <Spin />;
   }
   return (
     <>
