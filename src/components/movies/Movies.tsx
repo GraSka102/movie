@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
-import { useMoviApi } from "../shared/MovieApi";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { useMoviApi } from "../../shared/MovieApi";
+import { LoadingSpinner } from "../LoadingSpinner";
 import { MovieList } from "./MovieList";
-import { Movie } from "./types/Movie";
-import { MovieUrls } from "../shared/utils";
+import { Movie } from "../types/Movie";
+import { MovieUrls } from "../../shared/utils";
 
 export default function Movies(): ReactElement {
   // const pathUrl = `/movie/top_rated${MovieUrls.apiKey}&language=de-De`;

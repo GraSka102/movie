@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Layout, Menu } from "antd";
 import "../App.css";
-import { MovieList } from "./MovieList";
+import { MovieList } from "./movies/MovieList";
 import { BrowserRouter, Link, useLocation } from "react-router-dom";
 import Router from "./Router";
 import Navigation from "./Navigation";

@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import MovieItem from "../MovieItem";
-import { MovieList } from "../MovieList";
+import MovieItem from "../movies/MovieItem";
+import { MovieList } from "../movies/MovieList";
 import { Movie } from "../types/Movie";
 
 interface Props {

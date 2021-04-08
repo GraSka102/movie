@@ -5,6 +5,7 @@ export interface People {
     total_results: number;
   }
   
+// Models für listen 
  export interface Person {
     adult: boolean;
     gender: number;
@@ -16,23 +17,6 @@ export interface People {
     profile_path: string;
   }
 
-  export interface PersonInfo {
-    adult: boolean;
-    also_known_as: string[];
-    biography: string;
-    birthday: string;
-    deathday?: any;
-    gender: number;
-    homepage?: any;
-    id: number;
-    imdb_id: string;
-    known_for_department: string;
-    name: string;
-    place_of_birth: string;
-    popularity: number;
-    profile_path: string;
-  }
-  
   export interface Knownfor {
     backdrop_path: string;
     first_air_date?: string;
@@ -53,3 +37,38 @@ export interface People {
     title?: string;
     video?: boolean;
   }
+
+//Models für Details
+
+  export interface PersonInfo {
+    adult: boolean;
+    also_known_as: string[];
+    biography: string;
+    birthday: string;
+    deathday?: any;
+    gender: number;
+    homepage?: any;
+    id: number;
+    imdb_id: string;
+    known_for_department: string;
+    name: string;
+    place_of_birth: string;
+    popularity: number;
+    profile_path: string;
+    images: Images;
+
+  }interface Images {
+    profiles: Profile[];
+  }
+  
+  interface Profile {
+    aspect_ratio: number;
+    file_path: string;
+    height: number;
+    iso_639_1?: any;
+    vote_average: number;
+    vote_count: number;
+    width: number;
+  }
+  
+ 

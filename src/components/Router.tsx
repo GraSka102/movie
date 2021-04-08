@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./Home";
-import MovieDetails from "./MovieDetails";
-import Movies from "./Movies";
+import MovieDetails from "./movies/MovieDetails";
+import Movies from "./movies/Movies";
 import People from "./people/People";
 import PersonDetails from "./people/PersonDetails";
 import PersonListItem from "./people/PersonListItem";

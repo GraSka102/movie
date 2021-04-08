@@ -1,61 +1,91 @@
-import { Card, Col, Divider, Row } from "antd";
-import Link from "antd/lib/typography/Link";
+import { Avatar, Card, Carousel, Col, Divider, List, Row, Image } from "antd";
 import React, { ReactElement } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useMoviApi } from "../../shared/MovieApi";
 import { MovieUrls } from "../../shared/utils";
 import { LoadingSpinner } from "../LoadingSpinner";
-import { PersonInfo } from "../types/People";
+import { Person, PersonInfo } from "../types/People";
 
 export default function PersonDetails(): ReactElement {
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
-  const pathUrl = `/person/${id}${MovieUrls.apiKey}&language=de-De`;
-  //const pathUrl = `/person/${id}/translations${MovieUrls.apiKey}&language=de-De`;
-  const [person] = useMoviApi<PersonInfo>("get", pathUrl);
+  const personInfoUrl = `/person/${id}${MovieUrls.apiKey}&language=de-De&append_to_response=videos,images`;
+  const [personInfo] = useMoviApi<PersonInfo>("get", personInfoUrl);
 
-  if (!person) {
+  const peopleUrl = `/person/popular${MovieUrls.apiKey}&language=de-De`;
+  const [people] = useMoviApi<{ results: Person[] }>("get", peopleUrl);
+
+  const person = people?.results.find((person) => person.id === Number(id));
+
+  if (!personInfo || !person) {
     return <LoadingSpinner />;
   }
-  const imgUrl = `http://image.tmdb.org/t/p/w185/${person.profile_path}`;
+  const imgUrl = `${MovieUrls.imgBase}/${personInfo.profile_path}`;
 
   return (
     <>
       <Divider orientation="center">
-        <h1>{person.name}</h1>
+        <h1>{personInfo.name}</h1>
       </Divider>
       <Row justify="space-between" align="top">
-        <Col flex={1} style={{ padding: 40 }}>
-          <div>
-            <img alt={person.name} src={imgUrl} />
-          </div>
+        <Col flex={1} style={{ padding: 40, maxWidth: 300 }}>
+          <Carousel autoplay style={{ display: "inline flow" }}>
+            {personInfo.images.profiles.map((img, index) => (
+              <div key={index}>
+                <img
+                  alt={personInfo.name}
+                  src={`${MovieUrls.imgBase}/${img.file_path}`}
+                />
+              </div>
+            ))}
+          </Carousel>
         </Col>
         <Col flex={3} offset="1">
           <div className="site-card-border-less-wrapper">
             <Card
-              title={person.gender == 1 ? "weiblich" : "männlich"}
+              title={personInfo.gender == 1 ? "weiblich" : "männlich"}
               bordered={false}
             >
-              <p>{`Popularität: ${person.popularity}`}</p>
+              <p>{`Popularität: ${personInfo.popularity}`}</p>
               <p>
-                {`Geboren: ${person.birthday} ${
-                  !person.deathday ? "" : `Gestorben: ${person.deathday}`
+                {`Geboren: ${personInfo.birthday} ${
+                  !personInfo.deathday
+                    ? ""
+                    : `Gestorben: ${personInfo.deathday}`
                 }`}
               </p>
-              <p>{`Geburtsort: ${person.place_of_birth}`}</p>
-              <p>{`Beruf: ${person.known_for_department}`}</p>
+              <p>{`Geburtsort: ${personInfo.place_of_birth}`}</p>
+              <p>{`Beruf: ${personInfo.known_for_department}`}</p>
               <p>
-                <a href={person.homepage}>{`${
-                  person.homepage ? `Homepage: ${person.homepage}` : ""
+                <a href={personInfo.homepage}>{`${
+                  personInfo.homepage ? `${personInfo.homepage}` : ""
                 }`}</a>
               </p>
+              <h4>Bekannt für:</h4>
+              <List
+                itemLayout="horizontal"
+                dataSource={person.known_for}
+                renderItem={(item) => (
+                  <List.Item onClick={() => history.push(`/movies/${item.id}`)}>
+                    <List.Item.Meta
+                      avatar={
+                        <Avatar
+                          src={`${MovieUrls.imgBase}/${item.backdrop_path}`}
+                        />
+                      }
+                      title={item.title}
+                    />
+                  </List.Item>
+                )}
+              />
             </Card>
           </div>
         </Col>
         <Col span={10} flex="auto">
           <div className="site-card-border-less-wrapper">
             <Card title="Biografie" bordered={false}>
-              <p>{person.biography}</p>
+              <p>{personInfo.biography}</p>
             </Card>
           </div>
         </Col>
@@ -64,3 +94,10 @@ export default function PersonDetails(): ReactElement {
     </>
   );
 }
+const contentStyle = {
+  height: "160px",
+  color: "#fff",
+  lineHeight: "160px",
+  textAlign: "center",
+  background: "#364d79",
+};

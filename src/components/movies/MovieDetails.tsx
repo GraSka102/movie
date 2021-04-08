@@ -1,16 +1,19 @@
 import { Card, Col, Divider, Row } from "antd";
 import React, { ReactElement } from "react";
 import { useParams } from "react-router-dom";
-import { useMoviApi } from "../shared/MovieApi";
-import { MovieUrls } from "../shared/utils";
-import { LoadingSpinner } from "./LoadingSpinner";
-import { Movie } from "./types/Movie";
+import { useMoviApi } from "../../shared/MovieApi";
+import { MovieUrls } from "../../shared/utils";
+import { LoadingSpinner } from "../LoadingSpinner";
+import { Movie } from "../types/Movie";
 
 export default function MovieDetails(): ReactElement {
   const { id } = useParams<{ id: string }>();
 
-  const pathUrl = `/movie/${id}${MovieUrls.apiKey}&language=de-De`;
+  //const pathUrl = `/movie/${id}${MovieUrls.apiKey}&language=de-De`;
+  const pathUrl = `/movie/${id}${MovieUrls.apiKey}&language=de-De&append_to_response=videos,images`;
   const [movie] = useMoviApi<Movie>("get", pathUrl);
+
+  // https://api.themoviedb.org/3/movie/157336?api_key={api_key}&append_to_response=videos
 
   if (!movie) {
     return <LoadingSpinner />;
@@ -41,7 +44,11 @@ export default function MovieDetails(): ReactElement {
               <p>{`Sprache: ${movie.original_language}`}</p>
               <p>{movie.video ? `Als Video vorhanden` : `Keine Video`}</p>
               <p>{`Titel (Orginalsprache): ${movie.original_title}`}</p>
-              {/* <p>{movie.overview}</p> */}
+              {/* {movie.videos.results.map((video) => (
+                <div
+                  key={video.id}
+                >{`key:${video.key}  id:${video.id} name: ${video.name} Site: ${video.site} Type:${video.type}`}</div>
+              ))} */}
             </Card>
           </div>
         </Col>
