@@ -8,7 +8,6 @@ interface Props {
 export default function Navigation(props: Props): ReactElement {
   return (
     <Layout.Header>
-      <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["/"]}>
         <Menu.Item key="/">
           <Link to="/">Home</Link>

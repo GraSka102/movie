@@ -14,10 +14,6 @@ export default function App(): ReactElement {
         <Navigation>
           <Router />
         </Navigation>
-        <Content>
-          <div className="site-layout-content"></div>
-        </Content>
-        {/* <Footer>MovieApp Design ©2021 Created by Grazyna</Footer> */}
       </Layout>
     </BrowserRouter>
   );

@@ -39,7 +39,6 @@ export interface People {
   }
 
 //Models für Details
-
   export interface PersonInfo {
     adult: boolean;
     also_known_as: string[];

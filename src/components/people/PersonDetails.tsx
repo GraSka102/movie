@@ -1,4 +1,4 @@
-import { Avatar, Card, Carousel, Col, Divider, List, Row, Image } from "antd";
+import { Avatar, Card, Carousel, Col, Divider, List, Row } from "antd";
 import React, { ReactElement } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useMoviApi } from "../../shared/MovieApi";
@@ -18,10 +18,9 @@ export default function PersonDetails(): ReactElement {
 
   const person = people?.results.find((person) => person.id === Number(id));
 
-  if (!personInfo || !person) {
+  if (!personInfo || !people) {
     return <LoadingSpinner />;
   }
-  const imgUrl = `${MovieUrls.imgBase}/${personInfo.profile_path}`;
 
   return (
     <>
@@ -35,7 +34,7 @@ export default function PersonDetails(): ReactElement {
               <div key={index}>
                 <img
                   alt={personInfo.name}
-                  src={`${MovieUrls.imgBase}/${img.file_path}`}
+                  src={`${MovieUrls.imgBaseUrl}/${img.file_path}`}
                 />
               </div>
             ))}
@@ -65,13 +64,13 @@ export default function PersonDetails(): ReactElement {
               <h4>Bekannt für:</h4>
               <List
                 itemLayout="horizontal"
-                dataSource={person.known_for}
+                dataSource={person?.known_for || []}
                 renderItem={(item) => (
                   <List.Item onClick={() => history.push(`/movies/${item.id}`)}>
                     <List.Item.Meta
                       avatar={
                         <Avatar
-                          src={`${MovieUrls.imgBase}/${item.backdrop_path}`}
+                          src={`${MovieUrls.imgBaseUrl}/${item.backdrop_path}`}
                         />
                       }
                       title={item.title}
@@ -94,10 +93,3 @@ export default function PersonDetails(): ReactElement {
     </>
   );
 }
-const contentStyle = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};

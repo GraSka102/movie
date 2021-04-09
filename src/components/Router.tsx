@@ -5,8 +5,6 @@ import MovieDetails from "./movies/MovieDetails";
 import Movies from "./movies/Movies";
 import People from "./people/People";
 import PersonDetails from "./people/PersonDetails";
-import PersonListItem from "./people/PersonListItem";
-import TableEx from "./people/TableEx";
 import MoviesSearch from "./search/MoviesSearch";
 
 export default function Router() {
@@ -18,9 +16,6 @@ export default function Router() {
       <Route path="/movies">
         Filme:
         <Movies />
-      </Route>
-      <Route path="/table">
-        <TableEx />
       </Route>
       <Route path="/actors/:id">
         <PersonDetails />
