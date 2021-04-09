@@ -2,6 +2,7 @@ import { Card, Col, Divider } from "antd";
 import Meta from "antd/lib/card/Meta";
 import React, { ReactElement } from "react";
 import { useHistory } from "react-router-dom";
+import { MovieUrls } from "../../shared/utils";
 import { Person } from "../types/People";
 
 interface Props {
@@ -10,12 +11,9 @@ interface Props {
 
 export default function PersonListItem({ person }: Props): ReactElement {
   const history = useHistory();
-
-  const imgUrl = `http://image.tmdb.org/t/p/w185/${person.profile_path}`;
-  console.log(imgUrl);
+  const imgUrl = `${MovieUrls.imgBaseUrl}${person.profile_path}`;
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    
     history.push(`/actors/${person.id}`);
   };
 

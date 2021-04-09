@@ -2,7 +2,7 @@ import { Row, Space, Spin } from "antd";
 import React, { ReactElement } from "react";
 import { useMoviApi } from "../../shared/MovieApi";
 import { LoadingSpinner } from "../LoadingSpinner";
-import MovieItem from "./MovieItem";
+import MovieItem from "./MovieListItem";
 import { Movie } from "../types/Movie";
 
 interface Props {
@@ -15,7 +15,6 @@ export function MovieList({ movies }: Props): ReactElement {
   }
   return (
     <>
-      {/* Jedem Element der Reihe links/rechts, oben/unten Abstände geben */}
       <Row
         gutter={[
           { xs: 16, sm: 16, md: 24, lg: 32, xl: 32 },

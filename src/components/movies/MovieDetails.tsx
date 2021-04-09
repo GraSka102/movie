@@ -1,6 +1,6 @@
 import { Card, Col, Divider, Row } from "antd";
 import React, { ReactElement } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useMoviApi } from "../../shared/MovieApi";
 import { MovieUrls } from "../../shared/utils";
 import { LoadingSpinner } from "../LoadingSpinner";
@@ -17,17 +17,10 @@ export default function MovieDetails(): ReactElement {
     (person) => person.known_for_department === "Acting"
   );
 
-  const onClick = () => {
-    history.push(`/actors/${id}`);
-  };
-
-  console.log(actors?.length);
-  actors?.forEach((actor) => console.log(actor.name));
-
   if (!movie) {
     return <LoadingSpinner />;
   }
-  const imgUrl = `http://image.tmdb.org/t/p/w185/${movie.poster_path}`;
+  const imgUrl = `${MovieUrls.imgBaseUrl}${movie.poster_path}`;
   return (
     <>
       <Divider orientation="center">
@@ -39,7 +32,7 @@ export default function MovieDetails(): ReactElement {
             <img alt={movie.title} src={imgUrl} />
           </div>
         </Col>
-        <Col flex={3} offset="2">
+        <Col flex={2} offset="1">
           <div className="site-card-border-less-wrapper">
             <Card title={`Filmstart: ${movie.release_date}\n`} bordered={false}>
               <p>{`Note: ${movie.vote_average}`}</p>
@@ -67,7 +60,7 @@ export default function MovieDetails(): ReactElement {
             </Card>
           </div>
         </Col>
-        <Col span={10} flex="auto">
+        <Col span={8} flex="auto">
           <div className="site-card-border-less-wrapper">
             <Card title="Beschreibung" bordered={false}>
               <p>{movie.overview}</p>

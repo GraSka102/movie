@@ -1,10 +1,9 @@
+import { Layout } from "antd";
 import React, { ReactElement } from "react";
-import { Layout, Menu } from "antd";
+import { BrowserRouter } from "react-router-dom";
 import "../App.css";
-import { MovieList } from "./movies/MovieList";
-import { BrowserRouter, Link, useLocation } from "react-router-dom";
-import Router from "./Router";
 import Navigation from "./Navigation";
+import Router from "./Router";
 const { Content, Footer } = Layout;
 
 export default function App(): ReactElement {

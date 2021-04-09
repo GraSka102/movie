@@ -13,7 +13,6 @@ export default function PeopleList({ people }: Props): ReactElement {
   }
   return (
     <>
-      {/* Jedem Element der Reihe links/rechts, oben/unten Abstände geben */}
       <Row
         gutter={[
           { xs: 16, sm: 16, md: 24, lg: 32, xl: 32 },

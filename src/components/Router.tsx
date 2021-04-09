@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import MovieDetails from "./movies/MovieDetails";
@@ -7,7 +7,7 @@ import People from "./people/People";
 import PersonDetails from "./people/PersonDetails";
 import MoviesSearch from "./search/MoviesSearch";
 
-export default function Router() {
+export default function Router(): ReactElement {
   return (
     <Switch>
       <Route path="/movies/:id">
