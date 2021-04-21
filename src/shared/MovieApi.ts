@@ -3,7 +3,7 @@ import axios, { AxiosResponse, Method } from 'axios';
 import { useEffect, useState } from 'react';
 import {MovieUrls} from './utils'
 
-export function useMoviApi<T>(method: Method, path: string): ([state: (T | undefined), setState: React.Dispatch<React.SetStateAction<T | undefined>>]) {
+export function useMovieApi<T>(method: Method, path: string): ([state: (T | undefined), setState: React.Dispatch<React.SetStateAction<T | undefined>>]) {
   const [state, setState] = useState<T>()
 
   useEffect(() => {

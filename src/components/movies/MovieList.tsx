@@ -1,18 +1,13 @@
-import { Row, Space, Spin } from "antd";
+import { Row } from "antd";
 import React, { ReactElement } from "react";
-import { useMoviApi } from "../../shared/MovieApi";
-import { LoadingSpinner } from "../LoadingSpinner";
-import MovieItem from "./MovieListItem";
 import { Movie } from "../types/Movie";
+import MovieItem from "./MovieListItem";
 
 interface Props {
   movies: Movie[];
 }
 
 export function MovieList({ movies }: Props): ReactElement {
-  if (!movies) {
-    return <LoadingSpinner />;
-  }
   return (
     <>
       <Row

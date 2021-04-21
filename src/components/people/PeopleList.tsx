@@ -1,6 +1,5 @@
 import { Row } from "antd";
 import React, { ReactElement } from "react";
-import { LoadingSpinner } from "../LoadingSpinner";
 import { Person } from "../types/People";
 import PersonListItem from "./PersonListItem";
 
@@ -8,9 +7,6 @@ interface Props {
   people: Person[];
 }
 export default function PeopleList({ people }: Props): ReactElement {
-  if (!people) {
-    return <LoadingSpinner />;
-  }
   return (
     <>
       <Row

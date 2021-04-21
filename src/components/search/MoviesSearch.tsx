@@ -1,6 +1,6 @@
 import { Input, Space } from "antd";
 import React, { ReactElement, useState } from "react";
-import { useMoviApi } from "../../shared/MovieApi";
+import { useMovieApi } from "../../shared/MovieApi";
 import { MovieUrls } from "../../shared/utils";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { Movie } from "../types/Movie";
@@ -9,8 +9,9 @@ import Popup from "./Popup";
 export default function MoviesSearch(): ReactElement {
   const [foundMovies, setFoundMovies] = useState<Movie[]>();
   const [isPopupOpen, setPopupOpen] = useState(false);
+
   const pathUrl = `/movie/popular${MovieUrls.apiKey}${MovieUrls.queryParam}`;
-  const [movies] = useMoviApi<{ results: Movie[] }>("get", pathUrl);
+  const [movies] = useMovieApi<{ results: Movie[] }>("get", pathUrl);
 
   const { Search } = Input;
 

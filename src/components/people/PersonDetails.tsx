@@ -1,7 +1,7 @@
 import { Avatar, Card, Carousel, Col, Divider, List, Row } from "antd";
 import React, { ReactElement } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { useMoviApi } from "../../shared/MovieApi";
+import { useMovieApi } from "../../shared/MovieApi";
 import { MovieUrls } from "../../shared/utils";
 import { LoadingSpinner } from "../LoadingSpinner";
 import { Person, PersonInfo } from "../types/People";
@@ -11,10 +11,10 @@ export default function PersonDetails(): ReactElement {
   const history = useHistory();
 
   const personInfoUrl = `/person/${id}${MovieUrls.apiKey}&language=de-De&append_to_response=videos,images`;
-  const [personInfo] = useMoviApi<PersonInfo>("get", personInfoUrl);
+  const [personInfo] = useMovieApi<PersonInfo>("get", personInfoUrl);
 
   const peopleUrl = `/person/popular${MovieUrls.apiKey}&language=de-De`;
-  const [people] = useMoviApi<{ results: Person[] }>("get", peopleUrl);
+  const [people] = useMovieApi<{ results: Person[] }>("get", peopleUrl);
 
   const person = people?.results.find((person) => person.id === Number(id));
 
