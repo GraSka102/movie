@@ -1,5 +1,4 @@
 import { Card, Col, Divider } from "antd";
-import Meta from "antd/lib/card/Meta";
 import React, { ReactElement } from "react";
 import { useHistory } from "react-router-dom";
 import { MovieUrls } from "../../shared/utils";
@@ -9,7 +8,8 @@ interface Props {
   person: Person;
 }
 
-export default function PersonListItem({ person }: Props): ReactElement {
+export default function PersonItem({ person }: Props): ReactElement {
+  const { Meta } = Card;
   const history = useHistory();
   const imgUrl = `${MovieUrls.imgBaseUrl}${person.profile_path}`;
 
@@ -26,6 +26,7 @@ export default function PersonListItem({ person }: Props): ReactElement {
           cover={<img alt={person.name} src={imgUrl} />}
         >
           <Meta title={person.name} />
+          <p>{`Popularität: ${person.popularity}`}</p>
           <Divider />
           {person.known_for.map((kf, index) => (
             <p key={index}>{kf.title}</p>

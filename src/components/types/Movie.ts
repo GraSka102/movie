@@ -49,7 +49,7 @@ interface Crew {
   job: string;
 }
 
-interface Cast {
+export interface Cast {
   adult: boolean;
   gender: number;
   id: number;

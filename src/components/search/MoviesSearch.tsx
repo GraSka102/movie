@@ -38,6 +38,7 @@ export default function MoviesSearch(): ReactElement {
 
   return (
     <Space direction="vertical">
+      <h2>Filmsuche</h2>
       <Search
         size="large"
         placeholder="Filmtitel angeben"

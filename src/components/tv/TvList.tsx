@@ -1,13 +1,13 @@
 import { Row } from "antd";
 import React, { ReactElement } from "react";
-import { Movie } from "../types/Movie";
-import MovieItem from "./MovieItem";
+import { Tv } from "../types/Tv";
+import TvItem from "./TvItem";
 
 interface Props {
-  movies: Movie[];
+  tvs: Tv[];
 }
 
-export function MovieList({ movies }: Props): ReactElement {
+export function TvList({ tvs }: Props): ReactElement {
   return (
     <>
       <div className="site-border-less-wrapper ">
@@ -17,8 +17,8 @@ export function MovieList({ movies }: Props): ReactElement {
             { xs: 16, sm: 16, md: 24, lg: 32, xl: 32 },
           ]}
         >
-          {movies.map((movie) => (
-            <MovieItem key={movie.id} movie={movie} />
+          {tvs.map((tv) => (
+            <TvItem key={tv.id} tv={tv} />
           ))}
         </Row>
       </div>

@@ -1,6 +1,8 @@
-import { Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu } from "antd";
 import React, { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
+const { Header, Content, Footer } = Layout;
 
 interface Props {
   children: ReactElement;
@@ -14,6 +16,9 @@ export default function Navigation(props: Props): ReactElement {
         </Menu.Item>
         <Menu.Item key="/movies">
           <Link to="/movies">Filme</Link>
+        </Menu.Item>
+        <Menu.Item key="/tvs">
+          <Link to="/tvs">TV Serien</Link>
         </Menu.Item>
         <Menu.Item key="/actors">
           <Link to="/actors">Schauspieler</Link>

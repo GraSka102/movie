@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { MovieList } from "../movies/MovieList";
 import { Movie } from "../types/Movie";
 

@@ -28,7 +28,7 @@ export default function PersonDetails(): ReactElement {
         <h1>{personInfo.name}</h1>
       </Divider>
       <Row justify="space-between" align="top">
-        <Col flex={1} style={{ padding: 40, maxWidth: 300 }}>
+        <Col flex={1} style={{ padding: 10, maxWidth: 250 }}>
           <Carousel autoplay style={{ display: "inline flow" }}>
             {personInfo.images.profiles.map((img, index) => (
               <div key={index}>
@@ -40,53 +40,45 @@ export default function PersonDetails(): ReactElement {
             ))}
           </Carousel>
         </Col>
-        <Col flex={3} offset="1">
-          <div className="site-card-border-less-wrapper">
-            <Card
-              title={personInfo.gender == 1 ? "weiblich" : "männlich"}
-              bordered={false}
-            >
-              <p>{`Popularität: ${personInfo.popularity}`}</p>
-              <p>
-                {`Geboren: ${personInfo.birthday} ${
-                  !personInfo.deathday
-                    ? ""
-                    : `Gestorben: ${personInfo.deathday}`
-                }`}
-              </p>
-              <p>{`Geburtsort: ${personInfo.place_of_birth}`}</p>
-              <p>{`Beruf: ${personInfo.known_for_department}`}</p>
-              <p>
-                <a href={personInfo.homepage}>{`${
-                  personInfo.homepage ? `${personInfo.homepage}` : ""
-                }`}</a>
-              </p>
-              <h4>Bekannt für:</h4>
-              <List
-                itemLayout="horizontal"
-                dataSource={person?.known_for || []}
-                renderItem={(item) => (
-                  <List.Item onClick={() => history.push(`/movies/${item.id}`)}>
-                    <List.Item.Meta
-                      avatar={
-                        <Avatar
-                          src={`${MovieUrls.imgBaseUrl}/${item.backdrop_path}`}
-                        />
-                      }
-                      title={item.title}
-                    />
-                  </List.Item>
-                )}
-              />
-            </Card>
-          </div>
+        <Col flex={1} style={{ maxWidth: 250 }}>
+          <Card
+            title={personInfo.gender == 1 ? "weiblich" : "männlich"}
+            bordered={false}
+          >
+            <p>
+              {`Geboren: ${personInfo.birthday} ${
+                !personInfo.deathday ? "" : `Gestorben: ${personInfo.deathday}`
+              }`}
+            </p>
+            <p>{`Geburtsort: ${personInfo.place_of_birth}`}</p>
+            <p>
+              <a href={personInfo.homepage}>{`${
+                personInfo.homepage ? `${personInfo.homepage}` : ""
+              }`}</a>
+            </p>
+            <h4>Bekannt für:</h4>
+            <List
+              itemLayout="horizontal"
+              dataSource={person?.known_for || []}
+              renderItem={(item) => (
+                <List.Item onClick={() => history.push(`/movies/${item.id}`)}>
+                  <List.Item.Meta
+                    avatar={
+                      <Avatar
+                        src={`${MovieUrls.imgBaseUrl}/${item.backdrop_path}`}
+                      />
+                    }
+                    title={item.title}
+                  />
+                </List.Item>
+              )}
+            />
+          </Card>
         </Col>
         <Col span={10} flex="auto">
-          <div className="site-card-border-less-wrapper">
-            <Card title="Biografie" bordered={false}>
-              <p>{personInfo.biography}</p>
-            </Card>
-          </div>
+          <Card title="Biografie" bordered={false}>
+            <p>{personInfo.biography}</p>
+          </Card>
         </Col>
       </Row>
       <Divider orientation="center"></Divider>
